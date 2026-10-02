@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VRAudio: five generative instruments</title>
-<meta name="description" content="Noctuary, Ephemeris, Phosphene, Totality and Parhelion: five instruments that compose and synthesise music from a seed — ambient, Berlin School, psytrance, techno and trance. VST3, standalone, Meta Quest; Windows, macOS and Linux.">
+<meta name="description" content="Noctuary, Ephemeris, Phosphene, Totality and Parhelion: five instruments that compose and synthesise music from a seed — ambient, Berlin School, psytrance, techno and trance. VST3, Audio Unit, LV2, standalone, Meta Quest; Windows, macOS and Linux. They play together as one band.">
 <meta property="og:title" content="VRAudio: five generative instruments">
 <meta property="og:description" content="Ambient, Berlin School, psytrance, techno and trance — composed from a seed and synthesised while they play.">
 <meta property="og:image" content="https://reneweller-coding.github.io/VRAudio/img/og.jpg">
@@ -90,10 +90,11 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
   every note — and synthesise it in real time. Nothing is played back from a recording: the same seed gives the same
   piece, and a new one gives a piece nobody has heard.</p>
   <p>They share their build, their panel and the hands of a Meta Quest, follow a DAW or an Ableton Link session, send
-  their notes out as MIDI and their stems to outputs of their own. Free software under the AGPL-3.0.</p>
+  their notes out as MIDI and their stems to outputs of their own, and play together as one band. Free software under
+  the AGPL-3.0.</p>
   <ul class="chips">
-    <li>VST3 + standalone</li><li>Windows x64</li><li>macOS Apple Silicon (untested)</li><li>Linux x86-64</li><li>Meta Quest</li>
-    <li>MIDI out</li><li>Ableton Link</li><li>C++20 + JUCE</li>
+    <li>VST3 + standalone</li><li>AU on macOS</li><li>LV2 on Linux</li><li>Windows x64</li><li>macOS Apple Silicon (untested)</li><li>Linux x86-64</li><li>Meta Quest</li>
+    <li>MIDI out</li><li>Ableton Link</li><li>Family jam</li><li>C++20 + JUCE</li>
   </ul>
   <nav class="jump">
     <a href="#noctuary">Noctuary</a><a href="#ephemeris">Ephemeris</a><a href="#phosphene">Phosphene</a>
@@ -218,6 +219,9 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
       two voices, locks to the scale and shapes the velocity — each option off until chosen.</li>
       <li><b>With other software.</b> MIDI out of every note as it sounds, a stereo output per stem in a DAW, and Ableton
       Link in the standalone: tempo, bars, start and stop.</li>
+      <li><b>One band.</b> The family jam: one instrument leads — its key, the energy of its sections, its breaks and
+      drops — and the others follow, the root at their next bar line, the mode with their next piece, on the bars
+      Ableton Link or the DAW gives them all.</li>
       <li><b>One headset.</b> A Meta Quest app per instrument and one grammar of hands for all of them.</li>
       <li><b>Checked.</b> Every function documented and checked by a test, a CI run on every push, and a sound check that
       measures every style's loudness against its last known render.</li>
