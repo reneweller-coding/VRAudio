@@ -10,7 +10,7 @@ The page of five generative instruments: **[reneweller-coding.github.io/VRAudio]
 | [Totality](https://github.com/reneweller-coding/Totality) | hypnotic techno | tracks of 32-bar plateaus and DJ sets that mix themselves |
 | [Parhelion](https://github.com/reneweller-coding/Parhelion) | trance | the supersaw, a physical piano, a synthesised orchestra |
 
-Each composes its music from a seed and synthesises it while it plays: VST3 and standalone for Windows and macOS
+Each composes its music from a seed and synthesises it while it plays: VST3 and standalone for Windows, Linux and macOS
 (Apple Silicon, untested), a Meta Quest app, MIDI out, a stereo output per stem, Ableton Link. Free software under the
 AGPL-3.0; every repository has its manual, its releases and a release "demos".
 
