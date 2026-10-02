@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VRAudio: five generative instruments</title>
+<meta name="description" content="Noctuary, Ephemeris, Phosphene, Totality and Parhelion: five instruments that compose and synthesise music from a seed — ambient, Berlin School, psytrance, techno and trance. VST3, standalone, Meta Quest; Windows and macOS.">
+<meta property="og:title" content="VRAudio: five generative instruments">
+<meta property="og:description" content="Ambient, Berlin School, psytrance, techno and trance — composed from a seed and synthesised while they play.">
+<meta property="og:image" content="https://reneweller-coding.github.io/VRAudio/img/og.jpg">
+<link rel="icon" href="img/noctuary.png">
+<style>
+:root {
+  --bg: #0d0f14;
+  --panel: #151922;
+  --line: #262c3a;
+  --text: #e6e8ee;
+  --muted: #9aa3b5;
+  --accent: #8fb4ff;
+  --radius: 14px;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f6f9;
+    --panel: #ffffff;
+    --line: #dde1ea;
+    --text: #1a1d24;
+    --muted: #5b6475;
+    --accent: #2f5fd0;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+header { padding: 56px 0 28px; }
+header h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.1; margin: 0 0 14px; letter-spacing: -0.01em; }
+header p { color: var(--muted); max-width: 760px; margin: 0 0 10px; font-size: 17px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+.chips li { border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; font-size: 13px; color: var(--muted); }
+nav.jump { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 22px 0 0; font-size: 15px; }
+section.inst {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 0 0 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 24px;
+}
+.head { display: flex; gap: 14px; align-items: center; margin-bottom: 10px; }
+.head img { width: 56px; height: 56px; border-radius: 12px; flex: none; }
+.head h2 { margin: 0; font-size: 26px; line-height: 1.1; }
+.genre { color: var(--muted); font-size: 14px; }
+.inst p { margin: 0 0 12px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.links a {
+  border: 1px solid var(--line); border-radius: 8px; padding: 5px 11px; font-size: 14px; color: var(--text);
+}
+.links a.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); font-weight: 600; }
+video { width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 10px; display: block; }
+.caption { color: var(--muted); font-size: 13px; margin: 6px 0 14px; }
+.tracks { display: grid; gap: 8px; }
+.track { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 10px; align-items: center; font-size: 14px; }
+.track audio { width: 100%; height: 34px; }
+.shared { margin: 8px 0 40px; }
+.shared h2 { font-size: 22px; }
+.shared ul { padding-left: 20px; color: var(--muted); }
+.shared li { margin: 4px 0; }
+.shared li b { color: var(--text); font-weight: 600; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 22px 0 40px; }
+@media (max-width: 820px) {
+  section.inst { grid-template-columns: minmax(0, 1fr); padding: 18px; }
+  .track { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Five instruments that compose while they play</h1>
+  <p>Noctuary, Ephemeris, Phosphene, Totality and Parhelion each write their music from a seed — the key, the form,
+  every note — and synthesise it in real time. Nothing is played back from a recording: the same seed gives the same
+  piece, and a new one gives a piece nobody has heard.</p>
+  <p>They share their build, their panel and the hands of a Meta Quest, follow a DAW or an Ableton Link session, send
+  their notes out as MIDI and their stems to outputs of their own. Free software under the AGPL-3.0.</p>
+  <ul class="chips">
+    <li>VST3 + standalone</li><li>Windows x64</li><li>macOS Apple Silicon (untested)</li><li>Meta Quest</li>
+    <li>MIDI out</li><li>Ableton Link</li><li>C++20 + JUCE</li>
+  </ul>
+  <nav class="jump">
+    <a href="#noctuary">Noctuary</a><a href="#ephemeris">Ephemeris</a><a href="#phosphene">Phosphene</a>
+    <a href="#totality">Totality</a><a href="#parhelion">Parhelion</a><a href="#together">What they share</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="inst" id="noctuary">
+    <div>
+      <div class="head"><img src="img/noctuary.png" alt=""><div><h2>Noctuary</h2><div class="genre">Ambient and drone</div></div></div>
+      <p>A drone-ambient synthesizer for slowly breathing clusters: just intonation, a conductor that plays all night, distance as the one number that shapes every voice, 24 source types, three reverb tiers, and 14592 presets measured by rendering them.</p>
+      <div class="links">
+        <a class="primary" href="https://github.com/reneweller-coding/Noctuary/releases/latest">Download</a>
+        <a href="https://github.com/reneweller-coding/Noctuary">Source and manual</a>
+        <a href="https://github.com/reneweller-coding/Noctuary/releases/tag/demos">All demos</a>
+      </div>
+    </div>
+    <div>
+      <video controls preload="none" poster="img/noctuary-demo.jpg" src="https://github.com/reneweller-coding/Noctuary/releases/download/demos/consonant_expanse.mp4"></video>
+      <div class="caption">Consonant Expanse, rendered by Noctuary; pictures by KaleidoscopeEnhanced. <a href="https://github.com/reneweller-coding/Noctuary/releases/download/demos/consonant_expanse.mp4">Open the video</a></div>
+      <div class="tracks">
+      <div class="track"><span>Consonant Expanse</span><audio controls preload="none" src="https://github.com/reneweller-coding/Noctuary/releases/download/demos/consonant_expanse.mp3"></audio></div>
+      <div class="track"><span>Somnus Field</span><audio controls preload="none" src="https://github.com/reneweller-coding/Noctuary/releases/download/demos/somnus_field.mp3"></audio></div>
+      <div class="track"><span>Harmonic Hours</span><audio controls preload="none" src="https://github.com/reneweller-coding/Noctuary/releases/download/demos/harmonic_hours.mp3"></audio></div>
+      </div>
+    </div>
+  </section>
+  <section class="inst" id="ephemeris">
+    <div>
+      <div class="head"><img src="img/ephemeris.png" alt=""><div><h2>Ephemeris</h2><div class="genre">Berlin School</div></div></div>
+      <p>Sequenced modular voices and a composer that plays whole pieces and night sets: eight rows orbiting a root, circuit-modelled filters and VCOs, tape keys, strings and a poly synth, envelopes, LFOs and a modulation matrix on every synth, the room of a tape echo and a long hall.</p>
+      <div class="links">
+        <a class="primary" href="https://github.com/reneweller-coding/Ephemeris/releases/latest">Download</a>
+        <a href="https://github.com/reneweller-coding/Ephemeris">Source and manual</a>
+        <a href="https://github.com/reneweller-coding/Ephemeris/releases/tag/demos">All demos</a>
+      </div>
+    </div>
+    <div>
+      <video controls preload="none" poster="img/ephemeris-demo.jpg" src="https://github.com/reneweller-coding/Ephemeris/releases/download/demos/cosmic.mp4"></video>
+      <div class="caption">Cosmic, rendered by Ephemeris; pictures by KaleidoscopeEnhanced. <a href="https://github.com/reneweller-coding/Ephemeris/releases/download/demos/cosmic.mp4">Open the video</a></div>
+      <div class="tracks">
+      <div class="track"><span>Cosmic</span><audio controls preload="none" src="https://github.com/reneweller-coding/Ephemeris/releases/download/demos/cosmic.mp3"></audio></div>
+      <div class="track"><span>Doom</span><audio controls preload="none" src="https://github.com/reneweller-coding/Ephemeris/releases/download/demos/doom.mp3"></audio></div>
+      <div class="track"><span>Melodic</span><audio controls preload="none" src="https://github.com/reneweller-coding/Ephemeris/releases/download/demos/melodic.mp3"></audio></div>
+      <div class="track"><span>Modern</span><audio controls preload="none" src="https://github.com/reneweller-coding/Ephemeris/releases/download/demos/modern.mp3"></audio></div>
+      <div class="track"><span>Drift</span><audio controls preload="none" src="https://github.com/reneweller-coding/Ephemeris/releases/download/demos/drift.mp3"></audio></div>
+      </div>
+    </div>
+  </section>
+  <section class="inst" id="phosphene">
+    <div>
+      <div class="head"><img src="img/phosphene.png" alt=""><div><h2>Phosphene</h2><div class="genre">Psytrance</div></div></div>
+      <p>Complete psytrance sets from a seed, a style and an energy arc — Goa, Full-On, Progressive, Dark Forest and Hi-Tech: key, tempo and form, kick and rolling bass, 303 acid, leads, arpeggios, pads and effects, played through its own synthesizers, mixer and mastering chain.</p>
+      <div class="links">
+        <a class="primary" href="https://github.com/reneweller-coding/Phosphene/releases/latest">Download</a>
+        <a href="https://github.com/reneweller-coding/Phosphene">Source and manual</a>
+        <a href="https://github.com/reneweller-coding/Phosphene/releases/tag/demos">All demos</a>
+      </div>
+    </div>
+    <div>
+      <video controls preload="none" poster="img/phosphene-demo.jpg" src="https://github.com/reneweller-coding/Phosphene/releases/download/demos/goa.mp4"></video>
+      <div class="caption">Goa, rendered by Phosphene; pictures by KaleidoscopeEnhanced. <a href="https://github.com/reneweller-coding/Phosphene/releases/download/demos/goa.mp4">Open the video</a></div>
+      <div class="tracks">
+      <div class="track"><span>Goa</span><audio controls preload="none" src="https://github.com/reneweller-coding/Phosphene/releases/download/demos/goa.mp3"></audio></div>
+      <div class="track"><span>Full-On</span><audio controls preload="none" src="https://github.com/reneweller-coding/Phosphene/releases/download/demos/fullon.mp3"></audio></div>
+      <div class="track"><span>Progressive</span><audio controls preload="none" src="https://github.com/reneweller-coding/Phosphene/releases/download/demos/progressive.mp3"></audio></div>
+      <div class="track"><span>Dark Forest</span><audio controls preload="none" src="https://github.com/reneweller-coding/Phosphene/releases/download/demos/darkforest.mp3"></audio></div>
+      <div class="track"><span>Hi-Tech</span><audio controls preload="none" src="https://github.com/reneweller-coding/Phosphene/releases/download/demos/hitech.mp3"></audio></div>
+      </div>
+    </div>
+  </section>
+  <section class="inst" id="totality">
+    <div>
+      <div class="head"><img src="img/totality.png" alt=""><div><h2>Totality</h2><div class="genre">Hypnotic techno</div></div></div>
+      <p>Hypnotic Berlin techno: tracks of 32-bar plateaus and whole DJ sets — a kick that hands its phase to the rumble under it, a twelve-lane kit, a bass and a 303 through circuit-modelled filters, the dub chord in its echoes, and a DJ who mixes the tracks into one long recomposition.</p>
+      <div class="links">
+        <a class="primary" href="https://github.com/reneweller-coding/Totality/releases/latest">Download</a>
+        <a href="https://github.com/reneweller-coding/Totality">Source and manual</a>
+        <a href="https://github.com/reneweller-coding/Totality/releases/tag/demos">All demos</a>
+      </div>
+    </div>
+    <div>
+      <video controls preload="none" poster="img/totality-demo.jpg" src="https://github.com/reneweller-coding/Totality/releases/download/demos/ostgut.mp4"></video>
+      <div class="caption">Ostgut, rendered by Totality; pictures by KaleidoscopeEnhanced. <a href="https://github.com/reneweller-coding/Totality/releases/download/demos/ostgut.mp4">Open the video</a></div>
+      <div class="tracks">
+      <div class="track"><span>Hypnotic</span><audio controls preload="none" src="https://github.com/reneweller-coding/Totality/releases/download/demos/hypnotic.mp3"></audio></div>
+      <div class="track"><span>Ostgut</span><audio controls preload="none" src="https://github.com/reneweller-coding/Totality/releases/download/demos/ostgut.mp3"></audio></div>
+      <div class="track"><span>Dub</span><audio controls preload="none" src="https://github.com/reneweller-coding/Totality/releases/download/demos/dub.mp3"></audio></div>
+      <div class="track"><span>Raw Peak</span><audio controls preload="none" src="https://github.com/reneweller-coding/Totality/releases/download/demos/rawpeak.mp3"></audio></div>
+      </div>
+    </div>
+  </section>
+  <section class="inst" id="parhelion">
+    <div>
+      <div class="head"><img src="img/parhelion.png" alt=""><div><h2>Parhelion</h2><div class="genre">Trance</div></div></div>
+      <p>Trance tracks and DJ sets: the JP-8000 supersaw, a physical piano, a synthesised orchestra, the pump of the ghost kick on every bus — and motifs checked against known tracks, so what it writes is its own.</p>
+      <div class="links">
+        <a class="primary" href="https://github.com/reneweller-coding/Parhelion/releases/latest">Download</a>
+        <a href="https://github.com/reneweller-coding/Parhelion">Source and manual</a>
+        <a href="https://github.com/reneweller-coding/Parhelion/releases/tag/demos">All demos</a>
+      </div>
+    </div>
+    <div>
+      <video controls preload="none" poster="img/parhelion-demo.jpg" src="https://github.com/reneweller-coding/Parhelion/releases/download/demos/uplifting.mp4"></video>
+      <div class="caption">Uplifting, rendered by Parhelion; pictures by KaleidoscopeEnhanced. <a href="https://github.com/reneweller-coding/Parhelion/releases/download/demos/uplifting.mp4">Open the video</a></div>
+      <div class="tracks">
+      <div class="track"><span>Uplifting</span><audio controls preload="none" src="https://github.com/reneweller-coding/Parhelion/releases/download/demos/uplifting.mp3"></audio></div>
+      <div class="track"><span>Progressive</span><audio controls preload="none" src="https://github.com/reneweller-coding/Parhelion/releases/download/demos/progressive.mp3"></audio></div>
+      <div class="track"><span>Dream House</span><audio controls preload="none" src="https://github.com/reneweller-coding/Parhelion/releases/download/demos/dream.mp3"></audio></div>
+      <div class="track"><span>Acid</span><audio controls preload="none" src="https://github.com/reneweller-coding/Parhelion/releases/download/demos/acid.mp3"></audio></div>
+      <div class="track"><span>Deep</span><audio controls preload="none" src="https://github.com/reneweller-coding/Parhelion/releases/download/demos/deep.mp3"></audio></div>
+      </div>
+    </div>
+  </section>
+  <div class="shared" id="together">
+    <h2>What they share</h2>
+    <ul>
+      <li><b>One panel.</b> The header, the tabs, the keys, Undo and Redo, the right click on every control (MIDI learn,
+      the default) and Help (F1) are the same in all five.</li>
+      <li><b>One keyboard.</b> A MIDI keyboard plays any voice, replaces or layers the composer's notes, splits between
+      two voices, locks to the scale and shapes the velocity — each option off until chosen.</li>
+      <li><b>With other software.</b> MIDI out of every note as it sounds, a stereo output per stem in a DAW, and Ableton
+      Link in the standalone: tempo, bars, start and stop.</li>
+      <li><b>One headset.</b> A Meta Quest app per instrument and one grammar of hands for all of them.</li>
+      <li><b>Checked.</b> Every function documented and checked by a test, a CI run on every push, and a sound check that
+      measures every style's loudness against its last known render.</li>
+    </ul>
+  </div>
+</main>
+
+<footer class="wrap">
+  The demos are rendered by each instrument's own command-line renderer and nothing else; the videos' pictures are by
+  <a href="https://github.com/reneweller-coding/KaleidoscopeEnhanced">KaleidoscopeEnhanced</a>, cut to the music's own
+  score cues. The instruments are free software (AGPL-3.0); their sources, manuals and releases are on GitHub.
+</footer>
+</body>
+</html>
