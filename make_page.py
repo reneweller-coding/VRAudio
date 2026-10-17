@@ -23,6 +23,15 @@ FAMILY = [
      'measured by rendering them.',
      ('consonant_expanse', 'Consonant Expanse'),
      [('consonant_expanse', 'Consonant Expanse'), ('somnus_field', 'Somnus Field'), ('harmonic_hours', 'Harmonic Hours')]),
+    ('Empyrean', 'AdditivAmbientSynth', 'Space ambient on the GPU', 'Deploy/empyrean.png',
+     'An additive synthesizer on the graphics card: every voice twenty thousand sine waves, each harmonic a cloud of '
+     'detuned partials with envelopes of their own, a conductor in just intonation that plays all night, a modal hall of '
+     '65,536 resonances that remembers what it heard -- and around it physics as sound: fluids, living fields, stars and '
+     'black holes, weather, giant throats. For Windows with an NVIDIA GeForce RTX card.',
+     ('convective_betelgeuse', 'Convective Betelgeuse'),
+     [('lunar_hall', 'Lunar Hall'), ('teeming_garden', 'Teeming Garden'), ('thunderous_rainpool', 'Thunderous Rainpool'),
+      ('convective_betelgeuse', 'Convective Betelgeuse'), ('sliding_whistler', 'Sliding Whistler'),
+      ('steppe_night', 'Steppe Night')]),
     ('Ephemeris', 'BerlinSchoolGenerator', 'Berlin School', 'docs/logo-128.png',
      'Sequenced modular voices and a composer that plays whole pieces and night sets: eight rows orbiting a root, '
      'circuit-modelled filters and VCOs, tape keys, strings and a poly synth, envelopes, LFOs and a modulation matrix '
@@ -90,7 +99,7 @@ def section(name, genre, text, video, demos):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
-    ap.add_argument('--vraudio', default=os.path.dirname(HERE), help='the folder holding the five repositories')
+    ap.add_argument('--vraudio', default=os.path.dirname(HERE), help='the folder holding the six repositories')
     a = ap.parse_args()
     img = os.path.join(HERE, 'img')
     os.makedirs(img, exist_ok=True)
@@ -108,7 +117,8 @@ def main():
         cmd = ['ffmpeg', '-v', 'error', '-y']
         for p in posters:
             cmd += ['-i', p]
-        strips = ';'.join('[%d:v]scale=-2:630,crop=240:630[s%d]' % (i, i) for i in range(len(posters)))
+        strips = ';'.join('[%d:v]scale=-2:630,crop=%d:630[s%d]' % (i, 1200 // len(posters), i)
+                          for i in range(len(posters)))
         cmd += ['-filter_complex', strips + ';' + ''.join('[s%d]' % i for i in range(len(posters)))
                 + 'hstack=inputs=%d' % len(posters), '-q:v', '3', os.path.join(img, 'og.jpg')]
         subprocess.run(cmd, check=True)

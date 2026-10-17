@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VRAudio: five generative instruments</title>
-<meta name="description" content="Noctuary, Ephemeris, Phosphene, Totality and Parhelion: five instruments that compose and synthesise music from a seed — ambient, Berlin School, psytrance, techno and trance. VST3, Audio Unit, LV2, standalone, Meta Quest; Windows, macOS and Linux. They play together as one band.">
-<meta property="og:title" content="VRAudio: five generative instruments">
-<meta property="og:description" content="Ambient, Berlin School, psytrance, techno and trance — composed from a seed and synthesised while they play.">
+<title>VRAudio: six generative instruments</title>
+<meta name="description" content="Noctuary, Empyrean, Ephemeris, Phosphene, Totality and Parhelion: six instruments that compose and synthesise music from a seed — ambient, space ambient on the GPU, Berlin School, psytrance, techno and trance. VST3, Audio Unit, LV2, standalone, Meta Quest; Windows, macOS and Linux. They play together as one band.">
+<meta property="og:title" content="VRAudio: six generative instruments">
+<meta property="og:description" content="Ambient, space ambient of twenty thousand sine waves a voice on the GPU, Berlin School, psytrance, techno and trance — composed from a seed and synthesised while they play.">
 <meta property="og:image" content="https://reneweller-coding.github.io/VRAudio/img/og.jpg">
 <link rel="icon" href="img/noctuary.png">
 <style>
@@ -85,19 +85,20 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 </head>
 <body>
 <header class="wrap">
-  <h1>Five instruments that compose while they play</h1>
-  <p>Noctuary, Ephemeris, Phosphene, Totality and Parhelion each write their music from a seed — the key, the form,
-  every note — and synthesise it in real time. Nothing is played back from a recording: the same seed gives the same
+  <h1>Six instruments that compose while they play</h1>
+  <p>Noctuary, Empyrean, Ephemeris, Phosphene, Totality and Parhelion each write their music from a seed — the key, the
+  form, every note — and synthesise it in real time; Empyrean on the graphics card, twenty thousand sine waves a
+  voice. Nothing is played back from a recording: the same seed gives the same
   piece, and a new one gives a piece nobody has heard.</p>
   <p>They share their build, their panel and the hands of a Meta Quest, follow a DAW or an Ableton Link session, send
   their notes out as MIDI and their stems to outputs of their own, and play together as one band. Free software under
   the AGPL-3.0.</p>
   <ul class="chips">
-    <li>VST3 + standalone</li><li>AU on macOS</li><li>LV2 on Linux</li><li>Windows x64</li><li>macOS Apple Silicon (untested)</li><li>Linux x86-64</li><li>Meta Quest</li>
+    <li>VST3 + standalone</li><li>AU on macOS</li><li>LV2 on Linux</li><li>Windows x64</li><li>macOS Apple Silicon (untested)</li><li>Linux x86-64</li><li>Meta Quest</li><li>NVIDIA CUDA (Empyrean)</li>
     <li>MIDI out</li><li>Ableton Link</li><li>Family jam</li><li>C++20 + JUCE</li>
   </ul>
   <nav class="jump">
-    <a href="#noctuary">Noctuary</a><a href="#ephemeris">Ephemeris</a><a href="#phosphene">Phosphene</a>
+    <a href="#noctuary">Noctuary</a><a href="#empyrean">Empyrean</a><a href="#ephemeris">Ephemeris</a><a href="#phosphene">Phosphene</a>
     <a href="#totality">Totality</a><a href="#parhelion">Parhelion</a><a href="#together">What they share</a>
   </nav>
 </header>
@@ -120,6 +121,29 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
       <div class="track"><span>Consonant Expanse</span><audio controls preload="none" src="https://github.com/reneweller-coding/Noctuary/releases/download/demos/consonant_expanse.mp3"></audio></div>
       <div class="track"><span>Somnus Field</span><audio controls preload="none" src="https://github.com/reneweller-coding/Noctuary/releases/download/demos/somnus_field.mp3"></audio></div>
       <div class="track"><span>Harmonic Hours</span><audio controls preload="none" src="https://github.com/reneweller-coding/Noctuary/releases/download/demos/harmonic_hours.mp3"></audio></div>
+      </div>
+    </div>
+  </section>
+  <section class="inst" id="empyrean">
+    <div>
+      <div class="head"><img src="img/empyrean.png" alt=""><div><h2>Empyrean</h2><div class="genre">Space ambient on the GPU</div></div></div>
+      <p>An additive synthesizer on the graphics card: every voice twenty thousand sine waves, each harmonic a cloud of detuned partials with envelopes of their own, a conductor in just intonation that plays all night, a modal hall of 65,536 resonances that remembers what it heard -- and around it physics as sound: fluids, living fields, stars and black holes, weather, giant throats. For Windows with an NVIDIA GeForce RTX card.</p>
+      <div class="links">
+        <a class="primary" href="https://github.com/reneweller-coding/Empyrean/releases/latest">Download</a>
+        <a href="https://github.com/reneweller-coding/Empyrean">Source and manual</a>
+        <a href="https://github.com/reneweller-coding/Empyrean/releases/tag/demos">All demos</a>
+      </div>
+    </div>
+    <div>
+      <video controls preload="none" poster="img/empyrean-demo.jpg" src="https://github.com/reneweller-coding/Empyrean/releases/download/demos/convective_betelgeuse.mp4"></video>
+      <div class="caption">Convective Betelgeuse, rendered by Empyrean; pictures by KaleidoscopeEnhanced. <a href="https://github.com/reneweller-coding/Empyrean/releases/download/demos/convective_betelgeuse.mp4">Open the video</a></div>
+      <div class="tracks">
+      <div class="track"><span>Lunar Hall</span><audio controls preload="none" src="https://github.com/reneweller-coding/Empyrean/releases/download/demos/lunar_hall.mp3"></audio></div>
+      <div class="track"><span>Teeming Garden</span><audio controls preload="none" src="https://github.com/reneweller-coding/Empyrean/releases/download/demos/teeming_garden.mp3"></audio></div>
+      <div class="track"><span>Thunderous Rainpool</span><audio controls preload="none" src="https://github.com/reneweller-coding/Empyrean/releases/download/demos/thunderous_rainpool.mp3"></audio></div>
+      <div class="track"><span>Convective Betelgeuse</span><audio controls preload="none" src="https://github.com/reneweller-coding/Empyrean/releases/download/demos/convective_betelgeuse.mp3"></audio></div>
+      <div class="track"><span>Sliding Whistler</span><audio controls preload="none" src="https://github.com/reneweller-coding/Empyrean/releases/download/demos/sliding_whistler.mp3"></audio></div>
+      <div class="track"><span>Steppe Night</span><audio controls preload="none" src="https://github.com/reneweller-coding/Empyrean/releases/download/demos/steppe_night.mp3"></audio></div>
       </div>
     </div>
   </section>
@@ -214,17 +238,19 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     <h2>What they share</h2>
     <ul>
       <li><b>One panel.</b> The header, the tabs, the keys, Undo and Redo, the right click on every control (MIDI learn,
-      the default) and Help (F1) are the same in all five.</li>
+      the default) and Help (F1) are the same in all six.</li>
       <li><b>One keyboard.</b> A MIDI keyboard plays any voice, replaces or layers the composer's notes, splits between
       two voices, locks to the scale and shapes the velocity — each option off until chosen.</li>
       <li><b>With other software.</b> MIDI out of every note as it sounds, a stereo output per stem in a DAW, and Ableton
-      Link in the standalone: tempo, bars, start and stop.</li>
+      Link in the standalone: tempo, bars, start and stop — in the five generators; Empyrean takes MIDI and MPE in and
+      sends its sound out.</li>
       <li><b>One band.</b> The family jam: one instrument leads — its key, the energy of its sections, its breaks and
       drops — and the others follow, the root at their next bar line, the mode with their next piece, on the bars
       Ableton Link or the DAW gives them all.</li>
       <li><b>One headset.</b> A Meta Quest app per instrument and one grammar of hands for all of them.</li>
       <li><b>Checked.</b> Every function documented and checked by a test, a CI run on every push, and a sound check that
-      measures every style's loudness against its last known render.</li>
+      measures every style's loudness against its last known render. Empyrean's tests run on the machine that builds
+      it: no CI runner has the card they need.</li>
     </ul>
   </div>
 </main>
