@@ -5,6 +5,7 @@ held against the reference recordings each instrument was calibrated on.
     python tools/mix_audit.py --only totality phosphene --fresh
     python tools/mix_audit.py --skip-render            # measure what work/mix_audit/<instrument>/ holds
     python tools/mix_audit.py --tag after              # the reports as <instrument>.after.md, beside the baseline
+    python tools/mix_audit.py --compare baseline after # two runs side by side
 
 What a report holds, per demo:
 
@@ -553,6 +554,39 @@ def report(key, inst, exe, results, tag):
     return '\n'.join(lines) + '\n'
 
 
+def compare(tags):
+    """Two runs side by side: per instrument the readings outside their references and outside the norms (over all the
+    demos), the worst codec peaks, and every measure whose count changed."""
+    runs = [json.load(open(os.path.join(WORK, t + '.json'), encoding='utf-8')) for t in tags]
+    print('%-10s %s' % ('', '   '.join('%-40s' % t for t in tags)))
+    for key in INSTRUMENTS:
+        if not all(key in r for r in runs):
+            continue
+        cells, per = [], []
+        for r in runs:
+            nm = norms(INSTRUMENTS[key])
+            refs = out = 0
+            count = {}
+            for d in r[key].values():
+                for k, band in d['ref'].items():
+                    if verdict(d['own'].get(k, d['family'].get(k)), band) in ('low', 'high'):
+                        refs += 1
+                        count[k] = count.get(k, 0) + 1
+                for k, (lo, hi, _) in nm.items():
+                    v = d['family'].get(k)
+                    if v is not None and math.isfinite(v) and not lo <= v <= hi:
+                        out += 1
+                        count['norm ' + k] = count.get('norm ' + k, 0) + 1
+            aac = max(d['family']['aac_peak'] for d in r[key].values())
+            opus = max(d['family']['opus_peak'] for d in r[key].values())
+            cells.append('off refs %2d  norms %2d  AAC %+.1f  Opus %+.1f' % (refs, out, aac, opus))
+            per.append(count)
+        print('%-10s %s' % (key, '   '.join('%-40s' % c for c in cells)))
+        for k in sorted(set(per[0]) | set(per[-1])):
+            if per[0].get(k, 0) != per[-1].get(k, 0):
+                print('%-10s   %-22s %d -> %d' % ('', k, per[0].get(k, 0), per[-1].get(k, 0)))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('--only', nargs='*', help='instruments (%s)' % ', '.join(INSTRUMENTS))
@@ -560,7 +594,11 @@ def main():
     ap.add_argument('--fresh', action='store_true', help='render again even where a render is kept')
     ap.add_argument('--skip-render', action='store_true', help='measure the renders kept, render nothing')
     ap.add_argument('--tag', default='', help='name the reports <instrument>.<tag>.md and <tag>.json')
+    ap.add_argument('--compare', nargs=2, metavar=('BEFORE', 'AFTER'), help='two runs side by side (their tags)')
     a = ap.parse_args()
+    if a.compare:
+        compare(a.compare)
+        return
     os.makedirs(WORK, exist_ok=True)
     js = os.path.join(WORK, (a.tag or 'audit') + '.json')
     store = json.load(open(js, encoding='utf-8')) if os.path.exists(js) else {}
